@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Organisasi [Nama Organisasi Anda]</title>
+    <!-- Link Google Fonts (misal: Poppins, Open Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Link Font Awesome untuk ikon (opsional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #007bff; /* Biru cerah */
+            --secondary-color: #6c757d; /* Abu-abu */
+            --accent-color: #28a745; /* Hijau untuk tombol/highlight */
+            --text-dark: #343a40; /* Teks gelap */
+            --text-light: #f8f9fa; /* Teks terang */
+            --bg-light: #ffffff; /* Latar belakang terang */
+            --bg-gray: #f2f2f2; /* Latar belakang abu-abu */
+            --border-color: #dee2e6; /* Warna border */
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-gray);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-light);
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-left: 25px;
+        }
+
+        .navbar ul li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://via.placeholder.com/1500x600/007bff/ffffff?text=Background+Organisasi') no-repeat center center/cover;
+            color: var(--text-light);
+            text-align: center;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 70vh;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Overlay gelap */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: #218838; /* Warna hover untuk accent-color */
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -15px;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        #tentang-kami .about-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        #tentang-kami .about-item {
+            flex: 1;
+            min-width: 280px;
+            background-color: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        #tentang-kami .about-item:hover {
+            transform: translateY(-5px);
+        }
+
+        #tentang-kami .about-item h3 {
+            color: var(--primary-color);
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 15px;
+        }
+
+        /* Programs/Services Section */
+        #program .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        #program .program-card {
+            background-color: var(--bg-light);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        #program .program-card:hover {
+            transform: translateY(-5px);
+        }
+
+        #program .program-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        #program .program-card-content {
+            padding: 20px;
+        }
+
+        #program .program-card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        /* Team Section */
+        #tim-kami .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        #tim-kami .team-member {
+            background-color: var(--bg-light);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 20px;
+            text-align: center;
+            width: 250px;
+            transition: transform 0.3s ease;
+        }
+
+        #tim-kami .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        #tim-kami .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--primary-color);
+        }
+
+        #tim-kami .team-member h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        #tim-kami .team-member p {
+            color: var(--secondary-color);
+            font-size: 0.9em;
+        }
+
+        /* Gallery Section */
+        #galeri .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        #galeri .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        #galeri .gallery-item img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Contact Section */
+        #kontak .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        #kontak .contact-info, #kontak .contact-form {
+            background-color: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        #kontak .contact-info h3, #kontak .contact-form h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        #kontak .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        #kontak .contact-info i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        #kontak .contact-form form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #kontak .contact-form label {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        #kontak .contact-form input,
+        #kontak .contact-form textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        #kontak .contact-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9em;
+            margin-top: 50px;
+        }
+
+        footer .social-links a {
+            color: var(--text-light);
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            .navbar ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .navbar ul li {
+                margin: 0 10px 10px 10px;
+            }
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .section-title {
+                font-size: 2em;
+            }
+            #tentang-kami .about-grid,
+            #program .program-grid,
+            #tim-kami .team-grid,
+            #galeri .gallery-grid,
+            #kontak .contact-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            #tentang-kami .about-item,
+            #tim-kami .team-member,
+            #kontak .contact-info,
+            #kontak .contact-form {
+                width: 90%;
+                max-width: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">Guild brisik</a>
+            <nav>
+                <ul>
+                    <li><a href="#tentang-kami">Tentang Kami</a></li>
+                    <li><a href="#program">Program</a></li>
+                    <li><a href="#tim-kami">Tim Kami</a></li>
+                    <li><a href="#galeri">Galeri</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1> Bersama guild brisik [Menjadi yang terbaik di kelasnya]</h1>
+                <p>Bersama-sama, kami bergerak untuk menciptakan perubahan positif dan Berkolaborasi antara teman di Game Freefire.</p>
+                <a href="#tentang-kami" class="btn">Pelajari Lebih Lanjut</a>
+            </div>
+        </section>
+
+        <section id="tentang-kami">
+            <div class="container">
+                <h2 class="section-title">Tentang Kami</h2>
+                <div class="about-grid">
+                    <div class="about-item">
+                        <h3>Visi</h3>
+                        <p>Menjadi Guild terdepan dalam [bidang Terkuat], menciptakan members yang [terbaik di guild].</p>
+                    </div>
+                    <div class="about-item">
+                        <h3>Misi</h3>
+                        <p>Melakukan [mabar rutin], [push rank], dan [bersilaturahmi antara members] untuk mencapai visi kami.</p>
+                    </div>
+                    <div class="about-item">
+                        <h3>Sejarah</h3>
+                        <p>Didirikan pada tahun [2025] oleh [Farel], dengan semangat untuk [menciptakan yang terbaik].</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="program">
+            <div class="container">
+                <h2 class="section-title">Program & Fasilitas kami</h2>
+                <div class="program-grid">
+                    <div class="program-card">
+                        <img src="jenjang karir.png" alt="Program 1">
+                        <div class="program-card-content">
+                            <h3>Program pengembangan karir</h3>
+                            <p>Menyediakan akses jenjang karir berkualitas bagi para members yang bergabung dengan kami.</p>
+                        </div>
+                    </div>
+                    <div class="program-card">
+                        <img src="push rank.jpg" alt="Program 2">
+                        <div class="program-card-content">
+                            <h3>push rank</h3>
+                            <p>Mengadakan match di setiap harinya terutama hari sabtu untuk mencapai guild top 1 indonesia dan bersenang² selamanya.</p>
+                        </div>
+                    </div>
+                    <div class="program-card">
+                        <img src="Besi.jpg" alt="Program 3">
+                        <div class="program-card-content">
+                            <h3>Bisnis online</h3>
+                            <p>Membantu para members mengembangkan keterampilan lokal dan potensi ekonomi dari menjual Besi yang berkualitas sebagai dana pemasukan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tim-kami">
+            <div class="container">
+                <h2 class="section-title">Tim pendiri Kami</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="Ketua.jpg" alt="Anggota Tim John Doe">
+                        <h3>Farel jenset</h3>
+                        <p>Ketua Guild</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="Dani.jpg" alt="Anggota Tim Jane Smith">
+                        <h3>Dani rauwb</h3>
+                        <p>Sekretaris</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="Zy.jpg" alt="Anggota Tim Alex Wong">
+                        <h3>Zzywok</h3>
+                        <p>Bendahara</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="Net.jpg" alt="Anggota Tim Sarah Lee">
+                        <h3>Net</h3>
+                        <p>Koordinator Program</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeri">
+            <div class="container">
+                <h2 class="section-title">Galeri Kegiatan</h2>
+                <div class="gallery-grid">
+                    <div class=""><img src="Kegiatan.jpg" style="width: 300px; height: 200px;" alt="Kegiatan 1"></div>
+                    <div class="gallery-item"><img src="Sawah.jpg" style="width: 300px; height: 200px;"  alt="Kegiatan 2"></div>
+                    <div class="gallery-item"><img src="Mabar.jpg" style="width: 300px; height: 200px;"  alt="Kegiatan 3"></div>
+                    <div class="gallery-item"><img src="Bisnis besi.jpeg" style="width: 300px; height: 200px;" alt="Kegiatan 4"></div>
+                    <div class="gallery-item"><img src="Mengelas besi.jpg" style="width: 300px; height: 200px;" alt="Kegiatan 5"></div>
+                    <div class="gallery-item"><img src="p.jpg" style="width: 300px; height: 200px;" alt="Kegiatan 6"></div>
+                      <div class="gallery-item"><img src="Kumpul.jpeg" style="width: 300px; height: 200px;" alt="Kegiatan 7"></div>
+                  <div class="gallery-item"><img src="Makan.jpg" style="width: 300px; height: 200px;" alt="Kegiatan 8"></div>
+                
+               </div>
+            </div>
+        </section>
+
+        <section id="kontak">
+            <div class="container">
+                <h2 class="section-title">Hubungi Kami</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Informasi Kontak</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Alamat Organisasi Anda, Kota, Kode Pos</p>
+                        <p><i class="fas fa-phone-alt"></i> (021) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> Briesik@gmail.com</p>
+                        <p><i class="fas fa-clock"></i> Senin - sabtu: 09:00 - 22:00</p>
+                        <div style="margin-top: 20px;">
+                            <!-- Anda bisa menambahkan peta Google Maps di sini -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.576906250669!2d106.8271799147689!3d-6.175110595529883!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d34f3f1e93%3A0x7d0a2d21e8e5d0d!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1678912345678!5m2!1sid!2sid"
+                                width="100%" height="200" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Kirim Pesan Kepada Kami</h3>
+                        <form action="#" method="POST">
+                            <label for="name">Nama Lengkap:</label>
+                            <input type="text" id="name" name="name" required>
+
+                           
+                            <label for="subject">Cantumkan ID FF:</label>
+                            <input type="text" id="subject" name="subject">
+
+                            <label for="message">Pesan Anda:</label>
+                            <textarea id="message" name="message" required></textarea>
+
+                            <button type="submit" class="btn">Kirim Pesan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p>&copy; 2025 [Briesik] JuNet. Hak Cipta Dilindungi Undang-Undang.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
+
+                 
